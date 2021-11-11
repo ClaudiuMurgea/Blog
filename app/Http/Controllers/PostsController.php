@@ -22,9 +22,19 @@ class PostsController extends Controller
         return view('Posts.index', compact('posts','categories'));
     }
 
-    public function create ()
+    public function AdminIndex ()
     {
-        return view('Posts.create');
+        $posts = Post::all();
+
+        $categories = Category::all();
+
+        return view('Posts.adminIndex', compact('posts', 'categories'));
+    }
+
+    public function create ()
+    {   
+        $categories = Category::all();
+        return view('Posts.create', compact('categories'));
     }
 
     public function store (Request $request)
@@ -36,9 +46,17 @@ class PostsController extends Controller
         $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
         $request->image->move(public_path('/images'), $newImageName); }
         
-        $slug = Str::slug('PostSlug', '-');
+        $postID = Post::orderBy('id', 'desc')->first();
+        
+        if($postID == null) {
+            $slug = Str::slug($request->input('title'), '-');
+        } 
+            $slug = Str::slug($request->input('title').' '.$postID->id, '-');
 
-        Post::create([
+
+        
+        
+        $post = Post::create([
             'title' => $request->input('title'),
             'text' => $request->input('text'),
             'published' => $request->input('published'),
@@ -46,19 +64,40 @@ class PostsController extends Controller
             'slug' => $slug
         ]);
 
+        #Category
+    
+        $categories = request()->validate([
+            'categories' => ''
+        ]);
+
+        #2-Create new relation to post  
+
+        foreach($categories as $values => $value) 
+        {
+            foreach($value as $index => $category)
+            {   
+                $newPostCategory = PostCategory::create([
+                    'category_id' => $category,
+                    'post_id' => $post->id
+                ]);
+            }
+        }
+
         return redirect('/')->with('message', 'Post succesfully created!');      
     }
 
-    public function show (Post $post) 
+    public function show ($slug) 
     {   
-        $postCategories = PostCategory::where('post_id', $post->id)->get();
-
-        return view('Posts.show', compact('post', 'postCategories'));
+        // $postCategories = PostCategory::where('post_id', $post->id)->get();
+        $post = Post::with('PostCategory')->where('slug', $slug)->first();
+        return view('Posts.show', compact('post'));
     }
 
-    public function edit (Post $post)
+    public function edit ($slug)
     {
         $categories = Category::all();
+        $post = Post::with('PostCategory')->where('slug', $slug)->first();
+
         $postCategories = PostCategory::where('post_id', $post->id)->pluck('category_id')->all();
 
         return view('Posts.edit', compact('post', 'categories', 'postCategories'));
@@ -72,8 +111,8 @@ class PostsController extends Controller
         if($request->image){       
             $newImageName = time() . '-' . $request->name . '.' . $request->image->extension();
             $request->image->move(public_path('/images'), $newImageName); }
-
-        $slug = Str::slug('PostSlug', '-');
+        
+        $slug = Str::slug($request->input('title').' '.$post->id, '-');
 
         Post::where('id', $post->id)->update([
             'title' => $request->input('title'),

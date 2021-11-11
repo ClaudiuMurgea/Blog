@@ -28,10 +28,17 @@ class CategoriesController extends Controller
     public function store (Request $request)
     {
         $data = request()->validate([
-            'category-name' => 'unique:categories,categoryname|required|min:3',     
+            'category-name' => 'required|min:3',     
         ]);
 
-        $slug = Str::slug('CategorySlug', '-');
+        $categoryID = Category::orderBy('id', 'desc')->first();
+
+        if($categoryID == null) {
+            $slug = Str::slug($request->input('category-name'), '-');
+        } 
+            $slug = Str::slug($request->input('category-name').' '.$categoryID->id, '-');
+
+
         $categoryName = Str::ucfirst($request->input('category-name'));
 
         $category = new Category();
@@ -42,15 +49,16 @@ class CategoriesController extends Controller
         return redirect('/admin/categories')->with('message', 'Category created!');
     }
 
-    public function show (Category $category)
+    public function show ($slug)
     {  
-        $postsForCategories = PostCategory::where('category_id' , $category->id)->get();
+        $category = Category::with('PostCategory')->where('slug' , $slug)->first();
         
-        return view('Categories.show', compact('postsForCategories', 'category'));
+        return view('Categories.show', compact('category'));
     }
 
-    public function edit (Category $category)
-    {
+    public function edit ($slug)
+    {   
+        $category = Category::where('slug', $slug)->get()->first();
         return view('Categories.edit', compact('category'));
     }
 
@@ -60,8 +68,11 @@ class CategoriesController extends Controller
             'category-name' => 'required'
         ]);
 
+        $slug = Str::slug($request->input('category-name').' '.$category->id, '-');
+
         $category = Category::where('id', $category->id)->update([
-            'categoryname' => $request->input('category-name')
+            'categoryname' => $request->input('category-name'),
+            'slug' => $slug
         ]);
         
         return redirect('/admin/categories')->with('message', 'Category succesfully edited!');

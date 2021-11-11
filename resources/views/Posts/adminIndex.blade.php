@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Published Posts')
+@section('title', 'All Posts')
 
 @section('content')
 
@@ -7,20 +7,24 @@
     <h3>Posts List</h3>     
 </div>
 
-@if(auth()->user())
-    <a class="navbar-brand offset-1 pl-4 text-primary" href="/admin/post/create">&laquo;Create Posts&raquo;</a>
-@endif
-
 <div class="row">
     <div class="col-8 offset-1">
         
         @foreach ($posts as $post)
 
-
-
             <h2 class="text-center my-5"> 
                 <a href="/{{ $post->slug }}"> {{ $post->title }} </a>
-            </h2>             
+            </h2>
+                
+            @if ($post->published)
+                <h3 class="float-right">
+                    Published 
+                </h3>
+            @else
+                <h3 class="float-right">
+                    Draft    
+                </h3>
+            @endif          
 
             <article class="mt-2 mb-3">
                 <span class="pl-5">
@@ -31,7 +35,6 @@
             </article>
 
             <hr class="mb-5" style="border-block-color: lightblue">
-
        
         @endforeach
     </div>

@@ -14,7 +14,7 @@
         
         <div class="d-flex offset-1">
             <h4>Categories :</h4>
-            @foreach ($postCategories as $category)
+            @foreach ($post->PostCategory as $category)
                 <ul style="list-style: none">
                     <a class="font-weight-bold" href="/category/{{ $category->category->id }}"> {{ $category->category->categoryname }} </a>
                 </ul>
@@ -37,7 +37,7 @@
         {{-- Edit/Delete --}}
         <span class="offset-1 float-right ">
             @if (auth()->user())
-                <a class="btn btn-warning rounded-sm mb-3" href="/admin/{{ $post->id }}/edit"> Edit post&nbsp;&raquo;&raquo;</a>
+                <a class="btn btn-warning rounded-sm mb-3" href="/admin/edit/{{ $post->slug }}"> Edit post&nbsp;&raquo;&raquo;</a>
                 <form action="/admin/{{ $post->id }}" method="POST">
                     @csrf
                     @method('DELETE')

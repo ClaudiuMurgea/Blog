@@ -30,12 +30,25 @@
             <input class="offset-5 mt-5" type="file" name="image" value="{{ old('image') }}">
 
             <div>
-                <button class="btn btn-primary mt-5 form-control" type="submit">Save Post</button>
+                <button class="btn btn-primary mt-5 form-control " type="submit">Create Post</button>
+            </div>
+
+            <hr>
+            
+            <div>        
+                <select class="form-control" name="categories[]" id="categories" multiple>
+                        
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}"> {{ $category->categoryname  }}</option>                
+                    @endforeach
+
+                </select>
             </div>
 
             {{-- Validation --}}
             <div class="text-danger text-center font-weight-bold">{{ $errors->first('title') }}</div>
             <div class="text-danger text-center font-weight-bold">{{ $errors->first('text') }}</div>
+            <div class="text-danger text-center font-weight-bold">{{ $errors->first('categories') }}</div>
 
         </form>
         

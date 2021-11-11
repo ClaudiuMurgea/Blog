@@ -13,7 +13,7 @@
 
 </div>
 
-@foreach ($postsForCategories as $post)
+@foreach ($category->PostCategory as $post)
     
     <h2 class="text-center"> 
         <a href="/{{ $post->post->id }}"> {{ $post->post->title }} </a>

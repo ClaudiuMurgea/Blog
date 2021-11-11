@@ -33,7 +33,7 @@
 
             
             <div>
-                <button class="btn btn-primary mt-5 form-control" type="submit">Save Post</button>
+                <button class="btn btn-primary mt-5 form-control" type="submit">Edit Post</button>
             </div>
 
             <hr/>

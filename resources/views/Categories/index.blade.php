@@ -23,7 +23,7 @@
                     <td>
                         <a href="/admin/category/{{ $category->id }}"> {{ $category->categoryname }} </a>
                     </td>
-                    <td><a class="btn btn-warning rounded-sm" href="/admin/category/{{ $category->id }}">Edit&raquo;&raquo;</a></td>
+                    <td><a class="btn btn-warning rounded-sm" href="/admin/category/{{ $category->slug }}">Edit&raquo;&raquo;</a></td>
                     <td>                
                         <form action="/admin/category/{{ $category->id }}" method="POST">
                             @csrf   
