@@ -6,63 +6,14 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
- 
-
- .btc {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  padding: 12px 24px;
-  border: 1px solid #635d6e;
-  border-radius: 8px;
-  background: #243127;
-  background: -webkit-gradient(linear, left top, left bottom, from(#585c59), to(#275825));
-  background: -moz-linear-gradient(top, #343d36, #0d4b2e);
-  background: linear-gradient(to bottom, #8ea393, #351438);
-  -webkit-box-shadow: #79598d 0px 0px 0px 0px;
-  -moz-box-shadow: #550b83 0px 0px 0px 0px;
-  box-shadow: #2d153b 0px 0px 0px 0px;
-  text-shadow: #301067 1px 1px 0px;
-  font: normal normal bold 20px arial;
-  color: #ffffff;
-  text-decoration: none;
-}
-.btc:hover,
-.btc:focus {
-  border: 1px solid ##5f20ce;
-  background: #7eff9c;
-  background: -webkit-gradient(linear, left top, left bottom, from(#7eff9c), to(#8b3dff));
-  background: -moz-linear-gradient(top, #7eff9c, #8b3dff);
-  background: linear-gradient(to bottom, #7eff9c, #8b3dff);
-  color: #ffffff;
-  text-decoration: none;
-}
-.btc:active {
-  background: #3f804e;
-  background: -webkit-gradient(linear, left top, left bottom, from(#3f804e), to(#797680));
-  background: -moz-linear-gradient(top, #2a5f36, #341b5e);
-  background: linear-gradient(to bottom, #3f804e, #3c2a5a);
-}
-.btc:after{
-  content:  "\0000a0";
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-  line-height: 24px;
-  margin: 0 -4px -6px 4px;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADeklEQVRIia2Wz2tcVRTHP/fOSzI/nDctNDFkIRJmYym40n8gNa7sIsSKJSC4K/EHgWBSuqgLUaIbN8VFlRgIRUECois1iLqTahFCrBhKNlWMmCbz482kmTlfF29mMsm8BFEPXN497957ft5zvtdxDEWvnMecikiTSGOYnUN2RjIwbSFbR1pF9olJG4UPbiXKcUk/KzPjo056S9IEsgAJzECGJJC1eIGsIdMK0pVw8Ye7JyrQtWeJKuUppOvIQplBYx81m4DAeZxz4Dyg+H9jH8XKS8im8yosu6VvOjL9IeHV6iy4JSDU/gOsWkZ7dbBmbC06MMuncANpfC6P6+sHCIGlsnZm9XKxV0EU1aZwLIC8RWWsWo5DccjZ7tGW4PG5PD6bp+XaQnk3c+lQiKLXnhkVuo0stNIOqkfgPXiPc/EX58G7Fp8C5+L1zppH9Qgr7YCsJOnxwvLapqvNX0DSx5IuqlbBdrfjA6lUgoLDAnFt3rWGx3a3Ua2CpI8kPR8IisAEEla63/F84LkZ+p54qitCSRfOgYPt778m88UiAKnwFI16FaQJh4oBuEkgUK2Kms3YIsDlQtzpoQShvVQJMmTaTCrAZXKoWu4HJj0wBkL1auJhte87IBlqJ16K15L8Sufa0zEPnAPQg72ejdbY5/b8FH/eeB2An954iT/enQVg7fo1fluYhmajV0H/QHt6NgDOIJKtcY6RQpYwkwZgOMxxKt0HwGA+R0EVkppBnHhADAWJPrbIpwKGr77f4Ydffaczf/iFuZOOHsgAtnB0kvt/UJw3ALY8sA6uO27/XcFBPtcDYBV03qVzUK91NpU//5Dtrz5tFZQjMzjCyItXMMGdG2+SLv/VKbD6zjaD3QoObuSqi+YvFJF+llnQ3LoX9592pR6p5NSTT/NraY/hO9+R6w8SKxsZza17yJoNpMe8kzaAFZzDh6dPdL1560se+eVbcn2pY/dY6X6rbtyKQxsnN7t2r+lpdl29qcvbpGbnAbJvf3YXMQ2YfyjEZbKxOT1XPKFdt6aqRVilBGA4LheW1zahCw+yu78vI+bAmc/m8bl8q70fJR2JiWHVMhaVaQHIXL5Qu3lEf+toDJmXkN77l5B5Oa/CzW7ITAT96sz4oxyAfj9dQH886NtcuPjjZlJQE6kyMw7WHEW6iGwM01lkQ4pfGP/42fI3G8MICfr1Wf8AAAAASUVORK5CYII=") no-repeat left center transparent;
-  background-size: 100% 100%;
-}
 
  .imgs {
-   min-width: 1260px;
-   min-height: 630px;
-   max-height: 630px;
-   max-width: 1260px;
+   min-width: 1250px;
+   min-height: 200px;
+   max-width: 1250px;
+   min-height: 200px;
  }
+
 :root {
   --blue: #3490dc;
   --indigo: #6574cd;

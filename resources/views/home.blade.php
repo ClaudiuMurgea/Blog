@@ -10,27 +10,27 @@
           <div class="card">
 
             <nav class="navbar navbar-light bg-light card-header">
-                <a class="navbar-brand text-primary card-body text-center" href="/"> Show published posts </a>
+                <a class="navbar-brand text-primary card-body text-center" href="{{ route('public.posts') }}"> Show published posts </a>
             </nav>
 
             <nav class="navbar navbar-light bg-light card-header">
-              <a class="navbar-brand text-primary card-body text-center" href="/admin/posts"> Show all posts </a>
+              <a class="navbar-brand text-primary card-body text-center" href={{ route('admin.posts') }}> Show all posts </a>
             </nav>
 
             <nav class="navbar navbar-light bg-light card-header">
-              <a class="navbar-brand text-primary card-body text-center" href="/admin/post/create"> Create Posts </a>
+              <a class="navbar-brand text-primary card-body text-center" href={{ route('post.create') }}> Create Posts </a>
             </nav>
 
             <nav class="navbar navbar-light bg-light card-header">
-              <a class="navbar-brand text-primary card-body text-center" href="/admin/categories"> Show Categories </a>
+              <a class="navbar-brand text-primary card-body text-center" href={{ route('admin.categories') }}> Show Categories </a>
             </nav>
 
             <nav class="navbar navbar-light bg-light card-header">
-              <a class="navbar-brand text-primary card-body text-center" href="/admin/category/create"> Create Category </a>
+              <a class="navbar-brand text-primary card-body text-center" href={{ route('category.create') }}> Create Category </a>
             </nav>
 
             <nav class="navbar navbar-light bg-light card-header">
-                <a class="navbar-brand text-primary card-body text-center" href="/admin/comments"> Accept Comments </a>
+                <a class="navbar-brand text-primary card-body text-center" href={{ route('admin.comments') }}> Accept Comments </a>
             </nav>
 
           </div>

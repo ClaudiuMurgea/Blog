@@ -33,10 +33,11 @@ class CategoriesController extends Controller
 
         $categoryID = Category::orderBy('id', 'desc')->first();
 
-        if($categoryID == null) {
-            $slug = Str::slug($request->input('category-name'), '-');
-        } 
+        if(!$categoryID == null) {
             $slug = Str::slug($request->input('category-name').' '.$categoryID->id, '-');
+        } 
+        $slug = Str::slug($request->input('category-name'), '-');
+            
 
 
         $categoryName = Str::ucfirst($request->input('category-name'));

@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-4 offset-4 form-group">
 
-        <form action="/admin/{{ $post->id }}" method="POST" enctype="multipart/form-data">
+        <form action={{ route('post.update', $post->id) }} method="POST" enctype="multipart/form-data">
             @csrf
             @method('PATCH')
 
@@ -39,10 +39,10 @@
             <hr/>
             <div>        
                 <select class="form-control" name="categories[]" id="categories" multiple>
-                        
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ in_array($category->id, $postCategories) ? 'selected' : ''}} > {{ $category->categoryname  }}</option>                
-                    @endforeach
+                  
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ in_array($category->id, $postCategories) ? 'selected' : ''}} > {{ $category->categoryname  }}</option>                
+                        @endforeach
 
                 </select>
             </div>

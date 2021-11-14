@@ -6,26 +6,31 @@
 <div class="offset-2 mb-5 pl-3">
     <h3>Posts List</h3>     
 </div>
-<div class="offset-1">
-<div class="row">
-    <div class="col-6 offset-1">
 
-        <h3>&laquo;{{ $post->title }}&raquo;</h3>
+<div class="offset-2">
+<div class="row">
+    <div class="col-10">
         
-        <div class="d-flex offset-1">
-            <h4>Categories :</h4>
+        <div class="d-flex align-items-baseline">
+
+            <h2>&laquo;{{ $post->title }}&raquo;</h2>
+
+            <h4 class="offset-3">Categories :</h4>
             @foreach ($post->PostCategory as $category)
                 <ul style="list-style: none">
                     <a class="font-weight-bold" href="/category/{{ $category->category->id }}"> {{ $category->category->categoryname }} </a>
                 </ul>
             @endforeach
-    
-        </div>             
 
+        </div>
+        
         <article class="mt-2 mb-3">
             <span class="pl-5">
                 <strong>
-                    {{ ucfirst(substr($post->text, 0, 200)) }} <span>...</span>
+                    {{ ucfirst(substr($post->text, 0, 200)) }} 
+                    @if( (strlen($post->text)) > 200)
+                        <span>...</span>
+                    @endif
                 </strong> 
             </span>          
         </article>
@@ -37,8 +42,9 @@
         {{-- Edit/Delete --}}
         <span class="offset-1 float-right ">
             @if (auth()->user())
-                <a class="btn btn-warning rounded-sm mb-3" href="/admin/edit/{{ $post->slug }}"> Edit post&nbsp;&raquo;&raquo;</a>
-                <form action="/admin/{{ $post->id }}" method="POST">
+                <a class="btn btn-warning rounded-sm mb-3" href={{ route('post.edit', $post->slug) }}> Edit post&nbsp;&raquo;&raquo;</a>
+
+                <form action={{ route('post.destroy', $post->id) }} method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger rounded-sm" type="submit" onclick="return confirm('Are you sure?')">Delete post</button>
@@ -46,11 +52,10 @@
             @endif 
         </span>
         
-
         <div class="row pl-3">
             <div class="form-group">
     
-                <form action="/comment/{{ $post->id }}" method="POST" enctype="multipart/form-data">
+                <form action={{ route('comment.store', $post->id) }} method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <input class="form-control col-3 mb-3" type="text" name="name" placeholder="Name..." value="{{ old('name') }}">
@@ -69,8 +74,6 @@
 
             </div>
         </div>
-
-      
 
         <div class="mt-2 mb-3">
             @foreach ($post->Comments as $comment)

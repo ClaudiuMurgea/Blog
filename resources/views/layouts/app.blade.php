@@ -87,7 +87,7 @@
             @if (auth()->user())
                 <a class="offset-5 font-weight-bold pl-5" href="/home">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&laquo;
-                    Admin Dashboard
+                        Admin Dashboard
                     &raquo;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </a>
             @endif

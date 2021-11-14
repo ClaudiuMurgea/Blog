@@ -45,7 +45,7 @@
 
         @foreach ($categories as $category)
             <ul style="list-style: none">
-                <a class="font-weight-bold" href="/category/{{ $category->slug }}"> {{ $category->categoryname }} </a>
+                <a class="font-weight-bold" href={{ route('category.show', $category->slug) }}> {{ $category->categoryname }} </a>
             </ul>
         @endforeach
 

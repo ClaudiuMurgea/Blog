@@ -4,8 +4,13 @@
 @section('content')
 
 <div class="d-flex row offset-2 col-8">
-    <h3>List of all Categories</h3>
-<div class="offset-3 pl-4 mt-5"> <a class="btn btn-primary" href="/admin/category/create">Add category</a> </div>
+    <h3 class="mt-3">List of all Categories</h3>
+
+    <div class="offset-3 pl-5 mt-5"> 
+        <div class="pl-3">  
+            <a class="btn btn-primary" href={{ route('category.create') }}>Add category</a>
+        </div> 
+    </div>
 
     <table class="table stripped">
 
@@ -23,9 +28,9 @@
                     <td>
                         <a href="/admin/category/{{ $category->id }}"> {{ $category->categoryname }} </a>
                     </td>
-                    <td><a class="btn btn-warning rounded-sm" href="/admin/category/{{ $category->slug }}">Edit&raquo;&raquo;</a></td>
+                    <td><a class="btn btn-warning rounded-sm" href={{ route('category.edit', $category->slug) }}>Edit &raquo;&raquo;</a></td>
                     <td>                
-                        <form action="/admin/category/{{ $category->id }}" method="POST">
+                        <form action={{ route('category.destroy', $category->id) }} method="POST">
                             @csrf   
                             @method('DELETE')
                                 <button class="btn btn-danger rounded-sm" type="submit" onclick="return confirm('Are you sure?')">Delete</button>

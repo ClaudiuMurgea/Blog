@@ -47,11 +47,12 @@ class PostsController extends Controller
         $request->image->move(public_path('/images'), $newImageName); }
         
         $postID = Post::orderBy('id', 'desc')->first();
-        
-        if($postID == null) {
-            $slug = Str::slug($request->input('title'), '-');
+
+        if(!$postID == null) {
+            $slug = Str::slug($request->input('title').' '.$postID->id, '-');            
         } 
-            $slug = Str::slug($request->input('title').' '.$postID->id, '-');
+        
+        $slug = Str::slug($request->input('title'), '-');
 
 
         
@@ -88,8 +89,8 @@ class PostsController extends Controller
 
     public function show ($slug) 
     {   
-        // $postCategories = PostCategory::where('post_id', $post->id)->get();
         $post = Post::with('PostCategory')->where('slug', $slug)->first();
+
         return view('Posts.show', compact('post'));
     }
 
@@ -99,13 +100,17 @@ class PostsController extends Controller
         $post = Post::with('PostCategory')->where('slug', $slug)->first();
 
         $postCategories = PostCategory::where('post_id', $post->id)->pluck('category_id')->all();
-
+        
         return view('Posts.edit', compact('post', 'categories', 'postCategories'));
     }
 
     public function update (Request $request,Post $post)
     {   
         $this->validateRequest();
+
+        $categories = request()->validate([
+            'categories' => 'required'
+        ]);
         
         $newImageName = 'image';
         if($request->image){       
@@ -121,12 +126,9 @@ class PostsController extends Controller
             'image_path' => $newImageName,
             'slug' => $slug
         ]);
+
     #Categories
     #1-Delete old category relation to post
-
-        $categories = request()->validate([
-            'categories' => 'required'
-        ]);
 
         $deleteOldCategories = PostCategory::where('post_id', $post->id)->get();
 
