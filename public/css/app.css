@@ -7,12 +7,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
- .imgs {
-   min-width: 1250px;
-   min-height: 200px;
-   max-width: 1250px;
-   min-height: 200px;
- }
+.imgs {
+  min-width: 1260px;
+  max-width: 1260px;
+  min-height: 600px;
+  max-height: 600px;
+}
 
 :root {
   --blue: #3490dc;
